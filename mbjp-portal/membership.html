@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="مارواڑی بھٹی جماعت پاکستان کی رکنیت کے لیے آن لائن فارم">
+<title>رکنیت فارم | مارواڑی بھٹی جماعت پاکستان</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.tailwindcss.com"></script></head>
+<body><div id="hdr"></div><main>
+<section class="bg-gradient-to-l from-emerald-900 to-emerald-600 text-white py-16 text-center px-4"><i class="fa-solid fa-id-card text-5xl text-amber-300"></i><h1 class="nast text-3xl md:text-4xl mt-3">رکنیت فارم</h1><p class="mt-2 opacity-90">جماعت کے رکن بنیں اور خدمتِ خلق کے قافلے کا حصہ بنیں</p></section>
+<div class="max-w-3xl mx-auto px-4 py-10"><div id="box" class="bg-white rounded-2xl shadow p-6">
+<div class="grid md:grid-cols-2 gap-3">
+<input id="n" placeholder="مکمل نام *" class="border rounded-lg p-3">
+<input id="f" placeholder="والد کا نام *" class="border rounded-lg p-3">
+<input id="c" dir="ltr" placeholder="شناختی کارڈ: 00000-0000000-0" class="border rounded-lg p-3">
+<input id="d" type="date" class="border rounded-lg p-3" title="تاریخ پیدائش">
+<input id="p" dir="ltr" placeholder="موبائل: 03XX-XXXXXXX *" class="border rounded-lg p-3">
+<select id="g" class="border rounded-lg p-3"><option>مرد</option><option>خاتون</option></select>
+<select id="r" class="border rounded-lg p-3"><option>کنری ریجن</option><option>کراچی ریجن</option><option>دیگر</option></select>
+<input id="a" placeholder="شاخ / علاقہ (مثلاً نوکوٹ، آصف نگر)" class="border rounded-lg p-3">
+<input id="j" placeholder="پیشہ" class="border rounded-lg p-3">
+<input id="e" placeholder="تعلیم" class="border rounded-lg p-3">
+<select id="s" class="border rounded-lg p-3 md:col-span-2"><option value="">دلچسپی کا شعبہ (اختیاری)</option><option>صحت</option><option>ایمبولینس</option><option>ویلفیئر</option><option>تعلیم</option><option>اسپورٹس و یوتھ</option><option>میڈیا و تعلقات عامہ</option></select>
+<textarea id="ad" rows="2" placeholder="مکمل پتہ" class="border rounded-lg p-3 md:col-span-2"></textarea></div>
+<label class="flex gap-2 mt-4 text-sm"><input id="ok" type="checkbox"> میں جماعت کے اصول و ضوابط کی پابندی کا اقرار کرتا/کرتی ہوں۔</label>
+<button onclick="join()" class="mt-4 bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-3 rounded-full">رکنیت کی درخواست جمع کرائیں</button></div>
+<div id="done" class="hidden bg-emerald-50 border border-emerald-300 rounded-2xl p-6 text-center">
+<i class="fa-solid fa-circle-check text-5xl text-emerald-600"></i><h2 class="nast text-2xl text-emerald-900 mt-2">درخواست موصول ہو گئی</h2>
+<p class="mt-2">ٹریکنگ آئی ڈی: <b id="did" dir="ltr" class="text-xl text-emerald-800"></b></p><p class="text-sm text-slate-600 mt-1">اس آئی ڈی سے ہیڈر کے "درخواست ٹریک کریں" میں صورتحال دیکھیں۔</p>
+<button onclick="print()" class="mt-4 bg-amber-500 text-emerald-950 px-6 py-2 rounded-full"><i class="fa-solid fa-print"></i> سلپ پرنٹ کریں</button></div></div>
+</main><div id="ftr"></div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script><script src="site.js"></script>
+<script>
+/* Saved into the same list as department applications, so tracker + admin.html work for members too */
+function join(){
+ const v=i=>document.getElementById(i).value.trim();
+ if(!v('n')||!v('f')||!v('p'))return alert('نام، والد کا نام اور موبائل نمبر ضروری ہیں');
+ if(!ok.checked)return alert('براہ کرم اقرار پر نشان لگائیں');
+ const a=apps();let id;do{id='MBJP-2026-'+(1000+Math.floor(Math.random()*9000))}while(a.some(x=>x.id===id));
+ const info=['والد: '+v('f'),'شناختی کارڈ: '+v('c'),'تاریخ پیدائش: '+v('d'),'جنس: '+v('g'),'ریجن: '+v('r'),'پیشہ: '+v('j'),'تعلیم: '+v('e'),'دلچسپی: '+v('s'),'پتہ: '+v('ad')].join(' | ');
+ a.push({id,dept:'رکنیت فارم',name:v('n'),phone:v('p'),city:v('a'),msg:info,date:new Date().toLocaleDateString('ur-PK'),status:'موصول — زیرِ جائزہ'});
+ localStorage.setItem('mbjp_apps',JSON.stringify(a));
+ did.textContent=id;box.classList.add('hidden');done.classList.remove('hidden');
+}
+</script></body></html>

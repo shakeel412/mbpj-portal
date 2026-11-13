@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>کراچی ریجن | مارواڑی بھٹی جماعت پاکستان</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.tailwindcss.com"></script></head>
+<body><div id="hdr"></div><main class="max-w-7xl mx-auto px-4 py-12">
+<h1 class="nast text-4xl text-emerald-900 text-center mb-10">کراچی ریجن</h1>
+<h2 class="nast text-2xl text-emerald-800 mb-1">ہیڈز شعبہ جات کراچی ریجن</h2><p class="text-sm text-slate-500 mb-4">Ref: MBJP/MO/0268</p><div id="a" class="grid grid-cols-2 md:grid-cols-4 gap-5 mb-14"></div>
+<h2 class="nast text-2xl text-emerald-800 mb-4">ذیلی کمیٹی کراچی ریجن</h2>
+<div class="bg-white rounded-2xl shadow p-4 mb-5 flex flex-wrap gap-2"><input id="zn" placeholder="چیئرمین کا نام" class="border rounded-lg p-2 flex-1"><input id="za" placeholder="علاقہ / شاخ" class="border rounded-lg p-2 flex-1"><button onclick="addZ()" class="bg-emerald-700 text-white px-5 rounded-lg">شامل کریں</button></div>
+<div id="z" class="grid grid-cols-2 md:grid-cols-4 gap-5"></div></main><div id="ftr"></div>
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="site.js"></script>
+<script>
+MB.grid('a',[['عبادالرحمن شبیر','ہیڈ شعبہ تعلیم'],['نعیم کمال الدین','ہیڈ شعبہ ویلفیئر'],['شہزاد قادر','ہیڈ شعبہ صحت'],['آصف رزاق','ہیڈ شعبہ ایمبولینس'],['زبیر جبار','ہیڈ شعبہ تعلقات عامہ'],['عدنان جبار','ہیڈ شعبہ اسپورٹس'],['عبداللہ یوسف','ہیڈ شعبہ میڈیا']]);
+/* Zili committee template: add names to DEFAULT_Z below (permanent) or use the form (saved in this browser) */
+const DEFAULT_Z=[/* ['نام','علاقہ'], */];
+const getZ=()=>[...DEFAULT_Z,...JSON.parse(localStorage.getItem('khi_zili')||'[]')];
+function drawZ(){const z=getZ();document.getElementById('z').innerHTML=z.length?z.map(x=>MB.card(x[0],'چیئرمین — '+x[1],'fa-user-tie')).join(''):'<p class="col-span-full text-center text-slate-500">ابھی کوئی رکن شامل نہیں — اوپر فارم سے شامل کریں۔</p>'}
+function addZ(){const n=zn.value.trim(),a=za.value.trim();if(!n||!a)return;const s=JSON.parse(localStorage.getItem('khi_zili')||'[]');s.push([n,a]);localStorage.setItem('khi_zili',JSON.stringify(s));zn.value=za.value='';drawZ()}
+drawZ();
+</script></body></html>
